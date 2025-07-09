@@ -44,6 +44,14 @@ export async function run(): Promise<void> {
       .addLink('My custom link', 'https://writeabout.net')
       .write()
   } catch (error) {
+    core.error('Something bad happened', {
+      title: 'Bad Error',
+      file: '.github/workflows/ci.yml',
+      startLine: 59,
+      startColumn: 11,
+      endColumn: 23
+    })
+
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
   }
